@@ -1,3 +1,5 @@
+# A test to prove I can do it
+
 class HashTableEntry:
     """
     Linked List hash table key/value pair
@@ -16,7 +18,6 @@ class HashTable:
     """
     A hash table that with `capacity` buckets
     that accepts string keys
-
     Implement this.
     """
 
@@ -31,19 +32,15 @@ class HashTable:
         Return the length of the list you're using to hold the hash
         table data. (Not the number of items stored in the hash table,
         but the number of slots in the main list.)
-
         One of the tests relies on this.
-
         Implement this.
         """
         # Storage is a list, so we can check its len
         return len(self.storage)
 
-
     def get_load_factor(self):
         """
         Return the load factor for this hash table.
-
         Implement this.
         """
         # Default of 0
@@ -53,21 +50,16 @@ class HashTable:
         # How much available space is being consumed?
         self.load_factor = self.num_items/self.capacity
 
-
     def fnv1(self, key):
         """
         FNV-1 Hash, 64-bit
-
         Implement this, and/or DJB2.
         """
-
         # Your code here
-
 
     def djb2(self, key):
         """
         DJB2 hash, 32-bit
-
         Implement this, and/or FNV-1.
         """
         hash = 5381
@@ -88,26 +80,22 @@ class HashTable:
     def put(self, key, value):
         """
         Store the value with the given key.
-
         Hash collisions should be handled with Linked List Chaining.
-
         Implement this.
         """
         # Take our arbitrary key and get a valid index
         index = self.hash_index(key)
 
         # If that index doesn't actually exist
-        if self.storage[index] is None:
+        if self.storage[index] == None:
             # Insert our key and value at that index
             self.storage[index] = HashTableEntry(key, value)
             # Add 1 to our number of items to reflect the change
             self.num_items += 1
-
         # If the index does actually exist
         else:
             # Grab whatever is at the index
             node = self.storage[index]
-
             # Move through the list until we're at the right place
             while node.key != key and node.next is not None:
                 node = node.next
@@ -128,23 +116,19 @@ class HashTable:
         if self.load_factor > 0.7:
             self.resize()
 
-
     def delete(self, key):
         """
         Remove the value stored with the given key.
-
         Print a warning if the key is not found.
-
         Implement this.
         """
         # Take our arbitrary key and get a valid index
         index = self.hash_index(key)
 
         # If it doesn't exist
-        if self.storage[index] is None:
+        if self.storage[index] == None:
             print('Warning! Key not found!')
             return None
-
         # If it does exist
         else:
             # Grab whatever it is at the index
@@ -160,7 +144,7 @@ class HashTable:
             # When we're at the right place
             if node.key == key:
                 # If we're still where we started
-                if prev is None:
+                if prev == None:
                     # Move to the next node
                     self.storage[index] = node.next
                 # If we're not where we started
@@ -174,7 +158,7 @@ class HashTable:
                 # Check how much space we're using
                 self.update_load_factor()
                 # If we're using less then 20% and the list capacity is 16+
-                if self.load_factor < 0.2 and self.capacity >= 16:
+                if self.load_factor < .20 and self.capacity >= 16:
                     # Resize it down to half of our current capacity
                     self.resize(self.capacity // 2)
 
@@ -185,21 +169,18 @@ class HashTable:
             else:
                 print('Warning! Key not found!')
 
-
     def get(self, key):
         """
         Retrieve the value stored with the given key.
-
         Returns None if the key is not found.
-
         Implement this.
         """
         # Take our arbitrary key and get a valid index
         index = self.hash_index(key)
-        # If there's nothing there, say so
-        if self.storage[index] is None:
-            return None
 
+        # If there's nothing there, say so
+        if self.storage[index] == None:
+            return None
         # If there is something there
         else:
             # Grab whatever it is at the index
@@ -207,6 +188,7 @@ class HashTable:
             # Move through the list until we're at the right place
             while node.key != key and node.next is not None:
                 node = node.next
+
             # When we're at the right place
             if node.key == key:
                 # Return the value
@@ -215,12 +197,10 @@ class HashTable:
             else:
                 return None
 
-
     def resize(self, new_capacity=None):
         """
         Changes the capacity of the hash table and
         rehashes all key/value pairs.
-
         Implement this.
         """
         # Get our storage as it currently exists
