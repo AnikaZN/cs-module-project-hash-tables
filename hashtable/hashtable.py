@@ -179,7 +179,7 @@ class HashTable:
                 return None
 
 
-    def resize(self, new_capacity):
+    def resize(self, new_capacity=None):
         """
         Changes the capacity of the hash table and
         rehashes all key/value pairs.
