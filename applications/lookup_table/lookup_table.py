@@ -1,5 +1,6 @@
 # Your code here
-
+import math
+import random
 
 def slowfun_too_slow(x, y):
     v = math.pow(x, y)
@@ -9,14 +10,18 @@ def slowfun_too_slow(x, y):
 
     return v
 
+lookup_table = {}
+
 def slowfun(x, y):
     """
     Rewrite slowfun_too_slow() in here so that the program produces the same
     output, but completes quickly instead of taking ages to run.
     """
-    # Your code here
+    pair = (x, y)
+    if pair not in lookup_table:
+        lookup_table[pair] = slowfun_too_slow(x, y)
 
-
+    return lookup_table[pair]
 
 # Do not modify below this line!
 

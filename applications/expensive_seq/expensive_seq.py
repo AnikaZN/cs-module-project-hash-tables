@@ -1,9 +1,17 @@
 # Your code here
-
+cache = {}
 
 def expensive_seq(x, y, z):
     # Your code here
+    trio = (x, y, z)
 
+    if trio not in cache:
+        if x <= 0:
+            cache[trio] = y + z
+        else:
+            cache[trio] = expensive_seq(x - 1, y + 1, z) + expensive_seq(x - 2, y + 2, z * 2) + expensive_seq(x - 3, y + 3, z * 3)
+
+    return cache[trio]
 
 
 if __name__ == "__main__":
