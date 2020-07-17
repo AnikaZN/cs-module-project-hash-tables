@@ -12,4 +12,19 @@ def f(x):
     return x * 4 + 6
 
 # Your code here
+q2 = []
 
+for number in q:
+    true = f(number)
+    q2.append(true)
+
+cache = {}
+counter = [x for x in len(q2)]
+
+for x in range(len(q2) - 1):
+        cache[((q2[x]) + (q2[x + 1]))] = (q[x], q[x + 1])
+
+print(cache)
+
+
+## Stuck
